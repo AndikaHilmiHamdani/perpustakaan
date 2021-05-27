@@ -25,7 +25,7 @@
         <div class="left">
           <h3 class="text-center">MENU</h3>
           <ul>
-            <li><a href="http://localhost/perpus/login.php">Login</a></li>
+            <li><a href="/login">Login</a></li>
             <li><a href="#">Home</a></li>
             <li><a href="#">Daftar Buku</a></li>
           </ul>
