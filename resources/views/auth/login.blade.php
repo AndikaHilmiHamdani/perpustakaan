@@ -18,7 +18,11 @@
                         </div>
                         <div class="form-group row">
                             <p><input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"></p>
-                            <p class="submit"><input type="submit" name="commit" value="Login"></p>
+                            <div class="col">
+                                <p class="submit"><input type="submit" name="commit" value="Login"></p>
+                                <a href="{{route('register')}}">Register</a>
+                            </div>
+
                         </div>
 
                     </div>
