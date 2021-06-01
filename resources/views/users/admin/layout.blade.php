@@ -56,7 +56,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <span>nama <i class="caret"></i></span>
+                                <span>{{ Auth::user()->name }} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                                 <li class="dropdown-header text-center">Account</li>
@@ -98,7 +98,7 @@
                         </div>
                         <div class="info">
                             <center>
-                                <p>Nama</p>
+                                <p>{{ Auth::user()->name }}</p>
                             </center>
 
                         </div>

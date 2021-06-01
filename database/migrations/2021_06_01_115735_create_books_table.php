@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateBooksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->unsignedBigInteger('kode_buku');
+            $table->primary('kode_buku');
+            $table->string('judul');
+            $table->string('pengarang');
+            $table->string('penerbit');
+            $table->integer('stock');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('books');
+    }
+}

@@ -10,12 +10,9 @@
             <div class="sm-st clearfix">
                 <span class="sm-st-icon st-red"><i class="fa fa-user"></i></span>
                 <div class="sm-st-info">
-                    <?php
-                    //$tampil = mysql_query("select * from data_anggota order by id desc");
-                    //$total = mysql_num_rows($tampil);
-                    ?>
-                    <span><?php //echo "$total"; 
-                            ?></span>
+
+                    <span>{{$countUser=count($users)}}
+                    </span>
                     Total Anggota
                 </div>
             </div>
@@ -24,10 +21,14 @@
             <div class="sm-st clearfix">
                 <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
                 <div class="sm-st-info">
-                    <?php //$tampil = mysql_query("select * from data_buku order by id desc");
-                    //$total1 = mysql_num_rows($tampil);
+                    <?php
+                    use App\Models\Books;
+                    $countbooks = '';
+                    $books = Books::select(Books::raw("kode_buku as id_buku"))->get();
+                    $countBooks = count($books);
+
                     ?>
-                    <span><?php //echo "$total1"; 
+                    <span><?php echo ($countBooks);
                             ?></span>
                     Total Buku
                 </div>
@@ -64,7 +65,7 @@
     <!-- Main row -->
     <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-6">
             <!--earning graph start-->
             <section class="panel">
                 <header class="panel-heading">
@@ -77,11 +78,16 @@
             <!--earning graph end-->
 
         </div>
-        <div class="col-lg-4">
+        <div class="col-md-6">
 
             <!--chat start-->
             <section class="panel">
-                    
+                <header class="panel-heading">
+                    Grafik Pengunjung
+                    <div class="panel-body">
+                        <canvas id="linechart" width="600" height="330"></canvas>
+                    </div>
+                </header>
             </section>
         </div>
     </div>

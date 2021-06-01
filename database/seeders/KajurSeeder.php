@@ -17,8 +17,8 @@ class KajurSeeder extends Seeder
     public function run()
     {
         $kajur = User::create([
-            'name'=>'Kajur',
-            'email'=>'kajur@gmail.com',
+            'name'=>'Ketua Jurusan',
+            'email'=>'kajurjti@gmail.com',
             'password'=>bcrypt('12345678')
         ]);
         $kajur -> assignRole("kajur");
