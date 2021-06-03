@@ -18,9 +18,20 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view("users.admin.user");
+        $users = User::where([
+            ['name', '!=', Null],
+            [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->
+                    orWhere('id', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('id', 'asc')
+            ->paginate(5);
+        return view("users.admin.user-index",compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -30,7 +41,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.admin.user');
     }
 
     /**
