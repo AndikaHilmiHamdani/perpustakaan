@@ -56,7 +56,7 @@
               <tbody>
                 <tr>
                   <td>{{$user->id}}</td>
-                  <td><a href="detail-anggota.php?hal=edit&kd={{$user->id}}"><span class="fa fa-user"></span>{{$user->name}}</a></td>
+                  <td><a href="{{route('admin.show',$user->id)}}"><span class="fa fa-user"></span>{{$user->name}}</a></td>
                   <td><?php //echo $data['jk']; ?>{{$user->email}}</td>
                   <td><?php //echo $data['kelas']; ?></td>
                   <td><?php //echo $data['ttl']; ?></td>
@@ -64,8 +64,11 @@
                   <td>
                     <center>
                       <div id="thanks">
-                      <a onclick="return confirm ('Yakin hapus <?php //echo $data['nama']; ?>.?');" class="btn btn-sm btn-danger tooltips" data-placement="bottom" data-toggle="tooltip" title="Hapus Anggota" href="hapus-anggota.php?hal=hapus&kd=<?php //echo $data['id']; ?>"><span class="glyphicon glyphicon-trash"></a>
-                      <a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Anggota" href="edit-anggota.php?hal=edit&kd=<?php //echo $data['id']; ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                      <form action="{{route('admin.destroy',$user->id)}}" method="post">
+                        @csrf @method('DELETE')
+                        <button type="submit"><span class="glyphicon glyphicon-trash"></button>
+                        <a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Anggota" href="{{route('admin.edit',$user->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+                      </form>
                       </div>
                     </center>
                   </td>
@@ -73,15 +76,11 @@
               </tbody>
               @endforeach
         </div>
-      <?php
-            //}
-      ?>
-      <!-- <div class="text-right" style="margin-top: 10px;">
-        <a href="{{route('admin.index')}}" class="btn btn-sm btn-info">Refresh Anggota <i class="fa fa-refresh"></i></a> 
-        <a href="{{route('admin.create')}}" class="btn btn-sm btn-warning">Tambah Anggota <i class="fa fa-arrow-circle-right"></i></a>
-      </div> -->
       </tbody>
       </table>
+      <div class="d-flex">
+        {{ $users->appends(request()->term)->links('pagination::bootstrap-4') }}
+      </div>
       </div><!-- /.box-body -->
     </div><!-- /.box -->
   </div>

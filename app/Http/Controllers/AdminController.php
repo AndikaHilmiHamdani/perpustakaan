@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -24,14 +25,13 @@ class AdminController extends Controller
             ['name', '!=', Null],
             [function ($query) use ($request) {
                 if (($term = $request->term)) {
-                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->
-                    orWhere('id', 'LIKE', '%' . $term . '%')->get();
+                    $query->orWhere('name', 'LIKE', '%' . $term . '%')->orWhere('id', 'LIKE', '%' . $term . '%')->get();
                 }
             }]
         ])
             ->orderBy('id', 'asc')
             ->paginate(5);
-        return view("users.admin.user-index",compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view("users.admin.user-index", compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -52,7 +52,19 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        $request = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password'])
+        ])->save();
+
+
+        return redirect()->route('admin.index')->with('sukses', 'user berhasil ditambahkan');
     }
 
     /**
@@ -63,7 +75,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        
+        $users = User::find($id);
+        return view('users.admin.detail-user',compact('users'));
     }
 
     /**
@@ -74,7 +87,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::find($id);
+        return view('users.admin.edit-user',compact('users'));
     }
 
     /**
@@ -86,7 +100,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id'=>'required',
+            'name'=>'required',
+            'email'=>'required'
+        ]);
+        User::find($id)->update($request->all());
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -97,12 +117,13 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->route('admin.index')->with('sukses', 'data berhasil dihapus');
     }
 
     public function user()
     {
         $users = User::get();
-        return view("users.admin.dashboard",compact('users'));
+        return view("users.admin.dashboard", compact('users'));
     }
 }
