@@ -2,25 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view("users.admin.user");
+        //
     }
 
     /**
@@ -52,7 +45,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -87,11 +80,5 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function user()
-    {
-        $users = User::get();
-        return view("users.admin.dashboard",compact('users'));
     }
 }

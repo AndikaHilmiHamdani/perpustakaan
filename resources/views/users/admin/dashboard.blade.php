@@ -22,6 +22,7 @@
                 <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
                 <div class="sm-st-info">
                     <?php
+                    //SUM books
                     use App\Models\Books;
                     $countbooks = '';
                     $books = Books::select(Books::raw("kode_buku as id_buku"))->get();

@@ -1,6 +1,6 @@
 <ul class="sidebar-menu">
     <li class="active">
-        <a href="index.php">
+        <a href="{{route('dashboard')}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
@@ -13,7 +13,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="anggota.php"><i class="fa fa-angle-double-right"></i> Data Anggota</a></li>
-            <li><a href="input-anggota.php"><i class="fa fa-angle-double-right"></i> Tambah Anggota</a></li>
+            <li><a href="{{route('admin.index')}}"><i class="fa fa-angle-double-right"></i> Tambah Anggota</a></li>
         </ul>
     </li>
 
