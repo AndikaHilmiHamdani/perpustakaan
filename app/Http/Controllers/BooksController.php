@@ -13,9 +13,23 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
+    }
+    public function index(Request $request)
+    {
+        $books = Books::where([
+            ['judul', '!=', null],
+            [function ($query) use ($request) {
+                if ($term = $request->term) {
+                    $query->orWhere('judul', 'LIKE', '%' . $term . '%')->orWhere('pengarang', 'LIKE', '%' . $term . '%')->get();
+                }
+            }]
+        ])
+            ->orderBy('kode_buku', 'asc')
+            ->paginate(5);
+        return view("users.books.books-index", compact('books'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -25,7 +39,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.books.books-create');
     }
 
     /**
@@ -36,7 +50,21 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_buku' => 'required',
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'stock' => 'required'
+        ]);
+        $request = Books::create([
+            'kode_buku' => $request['kode_buku'],
+            'judul' => $request['judul'],
+            'pengarang' => $request['pengarang'],
+            'penerbit' => $request['penerbit'],
+            'stock' => $request['stock']
+        ])->save();
+        return redirect()->route('books.index');
     }
 
     /**
@@ -56,9 +84,10 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode_buku)
     {
-        //
+        $books = Books::find($kode_buku);
+        return view('users.books.books-edit', compact('books'));
     }
 
     /**
@@ -68,9 +97,18 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode_buku)
     {
-        //
+        $request->validate([
+            'kode_buku' => 'required',
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'stock' => 'required'
+        ]);
+
+        Books::find($kode_buku)->update($request->all());
+        return redirect()->route('books.index');
     }
 
     /**
@@ -79,8 +117,9 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode_buku)
     {
-        //
+        Books::find($kode_buku)->delete();
+        return redirect()->route('books.index');
     }
 }

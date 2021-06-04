@@ -24,8 +24,8 @@
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-            <li><a href="buku.php"><i class="fa fa-angle-double-right"></i> Data Buku</a></li>
-            <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Tambah Buku</a></li>
+            <li><a href="{{route('books.index')}}"><i class="fa fa-angle-double-right"></i> Data Buku</a></li>
+            <li><a href="{{route('books.create')}}"><i class="fa fa-angle-double-right"></i> Tambah Buku</a></li>
         </ul>
     </li>
 

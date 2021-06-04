@@ -47,4 +47,5 @@
             </div><!-- /.box -->
         </div>
     </div>
+</section>
     @endsection
