@@ -18,8 +18,8 @@
                 <!-- </div> -->
                 <div class="panel-body">
                     <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('admin.update',$users->id)}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
-                    @csrf
-                    @method('PUT')
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">ID Anggota</label>
                             <div class="col-sm-8">
@@ -39,30 +39,34 @@
                                 <!--<span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>-->
                             </div>
                         </div>
-                        
+
                         <!-- <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Kelas</label>
                             <div class="col-sm-8">
-                                <input name="kelas" class="form-control" id="kelas" type="text" placeholder="Kelas" value="<?php //echo $data['kelas']; ?>" required />
+                                <input name="kelas" class="form-control" id="kelas" type="text" placeholder="Kelas" value="<?php //echo $data['kelas']; 
+                                                                                                                            ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tempat Tanggal Lahir</label>
                             <div class="col-sm-8">
-                                <input name="ttl" class="form-control" id="ttl" type="text" placeholder="Tempat Tanggal Lahir" value="<?php //echo $data['ttl']; ?>" required />
+                                <input name="ttl" class="form-control" id="ttl" type="text" placeholder="Tempat Tanggal Lahir" value="<?php //echo $data['ttl']; 
+                                                                                                                                        ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Alamat</label>
                             <div class="col-sm-8">
-                                <input name="alamat" class="form-control" id="alamat" type="text" placeholder="Alamat" value="<?php //echo $data['alamat']; ?>" required />
+                                <input name="alamat" class="form-control" id="alamat" type="text" placeholder="Alamat" value="<?php //echo $data['alamat']; 
+                                                                                                                                ?>" required />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Foto</label>
                             <div class="col-sm-8">
                                 <span class="help-block">Silahkan memilih foto untuk update atau mengedit data, tekan tombol batal untuk kembali.</span>
-                                <img src="<?php //echo $data['foto']; ?>" height="250" width="250" alt="Foto Anggota" style="margin-bottom: 10px;" /><br />
+                                <img src="<?php //echo $data['foto']; 
+                                            ?>" height="250" width="250" alt="Foto Anggota" style="margin-bottom: 10px;" /><br />
                                 <input name="name_file" id="name_file" type="file" />
                             </div>
                         </div> -->

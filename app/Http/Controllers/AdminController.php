@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Books;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -76,7 +77,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $users = User::find($id);
-        return view('users.admin.detail-user',compact('users'));
+        return view('users.admin.detail-user', compact('users'));
     }
 
     /**
@@ -88,7 +89,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
-        return view('users.admin.edit-user',compact('users'));
+        return view('users.admin.edit-user', compact('users'));
     }
 
     /**
@@ -101,9 +102,9 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id'=>'required',
-            'name'=>'required',
-            'email'=>'required'
+            'id' => 'required',
+            'name' => 'required',
+            'email' => 'required'
         ]);
         User::find($id)->update($request->all());
         return redirect()->route('admin.index');
@@ -123,7 +124,12 @@ class AdminController extends Controller
 
     public function user()
     {
+        $countbooks = '';
+        $books = Books::select(Books::raw("kode_buku as id_buku"))->get();
+        $countBooks = count($books);
+
         $users = User::get();
-        return view("users.admin.dashboard", compact('users'));
+        $countUsers = count($users);
+        return view("users.admin.dashboard", compact('countUsers'), compact('countBooks'));
     }
 }
