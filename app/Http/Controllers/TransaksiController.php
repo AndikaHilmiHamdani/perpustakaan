@@ -16,9 +16,10 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = transaksi::with('books')->orderBy('trx_id', 'asc')->paginate(5);
-        dd($transaksi);
-        // return view('users.transaksi.transaksi', compact('transaksi'));
+        $transaksi = transaksi::with('users')->get();
+        $paginate = transaksi::orderBy('trx_id','asc')->paginate(5);
+        //dd($transaksi);
+        return view('users.transaksi.transaksi', ['transaksi'=>$transaksi],['paginate'=>$paginate]);
     }
 
     /**
