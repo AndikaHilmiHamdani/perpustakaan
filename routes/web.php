@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +22,14 @@ Route::get('/', function () {
 
 Route::get('/jmlbooks', [App\Http\Controllers\BooksController::class, 'books'])->name('books');
 Auth::routes();
-Route:: prefix('admin')->group( function ()
-{
-    Route::resource('admin',AdminController::class);
-    Route::resource('books',BooksController::class);
+Route::prefix('admin')->group(function () {
+    Route::resource('admin', AdminController::class);
+    Route::resource('books', BooksController::class);
 });
 Route::middleware(['web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'user'])->name('dashboard');
     Route::get('/kajur', [App\Http\Controllers\HomeController::class, 'kajur'])->name('kajur');
 });
+
+Route::resource('Transaksi', TransaksiController::class);

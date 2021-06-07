@@ -141,9 +141,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Data Transaksi</a></li>
-                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Transaksi Peminjaman</a></li>
-                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Input Transaksi Pinjam</a></li>
+                                <li><a href="{{route('Transaksi.index')}}"><i class="fa fa-angle-double-right"></i> Data Transaksi</a></li>
+                                <li><a href="{{route('Transaksi.create')}}"><i class="fa fa-angle-double-right"></i> Input Transaksi Pinjam</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

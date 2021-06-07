@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Books;
+use App\Models\User;
+use App\Models\transaksi;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -13,7 +16,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $transaksi = transaksi::with('books')->get();
+        dd($transaksi);
+        // return view("users.transaksi.transaksi", compact('transaksi'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +28,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.transaksi.inputTransaksi');
     }
 
     /**

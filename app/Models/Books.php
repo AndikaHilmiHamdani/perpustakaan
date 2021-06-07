@@ -23,4 +23,8 @@ class Books extends Model
         'penerbit',
         'stock',
     ];
+    public function transaksi()
+    {
+        return $this->belongsTo(transaksi::class);
+    }
 }

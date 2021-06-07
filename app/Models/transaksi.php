@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class transaksi extends Model
 {
     use HasFactory;
+    protected $table = 'transaksi';
+
+    public function books()
+    {
+        return $this->hasMany(User::class);
+    }
+    // public function user()
+    // {
+    //     return $this->hasMany(User::class);
+    // }
 }
