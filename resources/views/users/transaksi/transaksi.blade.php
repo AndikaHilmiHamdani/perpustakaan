@@ -53,7 +53,7 @@
                         <tbody>
                             <tr>
                                 <td>{{$transaksi->trx_id}}</td>
-                                <td>{{$transaksi->kode_buku->judul}}</td>
+                                <td>{{$transaksi->books}}</td>
                                 <td>{{$transaksi->user_id}}</td>
                                 <td>{{$transaksi->tanggal_pinjam}}</td>
                                 <td>{{$transaksi->tanggal_kembali}}</td>

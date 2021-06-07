@@ -12,7 +12,7 @@ class transaksi extends Model
 
     public function books()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Books::class);
     }
     // public function user()
     // {

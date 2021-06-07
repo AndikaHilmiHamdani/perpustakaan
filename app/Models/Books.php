@@ -25,6 +25,6 @@ class Books extends Model
     ];
     public function transaksi()
     {
-        return $this->belongsTo(transaksi::class);
+        return $this->hasMany(transaksi::class);
     }
 }
