@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Books;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -130,6 +131,12 @@ class AdminController extends Controller
 
         $users = User::get();
         $countUsers = count($users);
-        return view("users.admin.dashboard", compact('countUsers'), compact('countBooks'));
+
+        $countTransaksi ='';
+        $transaksi= Transaksi::select(Transaksi::raw("trx_id as trx_id"))->get();
+        $countTransaksi = count($transaksi);
+
+        //dd($countTransaksi);
+        return view("users.admin.dashboard", compact('countUsers'), compact('countBooks'), compact('countTransaksi'));
     }
 }

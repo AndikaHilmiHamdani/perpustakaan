@@ -14,24 +14,40 @@
 
                 <!-- </div> -->
                 <div class="panel-body">
-                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('admin.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('Transaksi.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">name</label>
+                            <label class="col-sm-2 col-sm-2 control-label">ID</label>
                             <div class="col-sm-8">
-                                <input name="name" type="text" id="name" class="form-control" placeholder="name" required />
+                                <input name="trx_id" type="text" id="trx_id" class="form-control" placeholder="trx_id" required />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">email</label>
+                            <label class="col-sm-2 col-sm-2 control-label">Buku</label>
                             <div class="col-sm-8">
-                                <input name="email" class="form-control" id="email" type="email" placeholder="email" required />
+                                <select class="form-control" >
+                                    @foreach ($transaksi as $transaksi)
+                                    <option value="{{ $transaksi->books->judul }}" id="kode_buku" name="kode_buku">{{ $transaksi->books->judul }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">password</label>
+                            <label class="col-sm-2 col-sm-2 control-label">User </label>
                             <div class="col-sm-8">
-                                <input name="password" class="form-control" id="password" type="password" placeholder="password" required />
+                                <input name="user_id" class="form-control" id="user_id" type="text" placeholder="User" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
+                            <div class="col-sm-8">
+                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Tanggal Kembali </label>
+                            <div class="col-sm-8">
+                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" required />
                             </div>
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">

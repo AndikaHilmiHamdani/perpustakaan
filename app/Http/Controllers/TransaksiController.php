@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use App\Models\User;
-use App\Models\transaksi;
+use App\Models\Transaksi;
+
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -16,10 +17,10 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = transaksi::with('users')->get();
-        $paginate = transaksi::orderBy('trx_id','asc')->paginate(5);
+        $transaksi = Transaksi::with('users')->get();
+        $paginate = Transaksi::orderBy('trx_id','asc')->paginate(5);
         //dd($transaksi);
-        return view('users.transaksi.transaksi', ['transaksi'=>$transaksi],['paginate'=>$paginate]);
+        return view('users.transaksi.transaksi',compact('transaksi'),compact('paginate'));
     }
 
     /**
@@ -29,7 +30,8 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        return view('users.transaksi.inputTransaksi');
+        $transaksi = Transaksi::all();
+        return view('users.transaksi.inputTransaksi',compact('transaksi'));
     }
 
     /**
@@ -40,7 +42,21 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'trx_id'=> 'required',
+            'kode_buku'=>'required',
+            'user_id'=>'required',
+            'tanggal_pinjam'=>'required',
+            'tanggal_kembali'=>'required'
+        ]);
+        $request= Transaksi::create([
+            'trx_id'=> $request['trx_id'],
+            'kode_buku'=>$request['kode_buku'],
+            'user_id'=>$request['user_id'],
+            'tanggal_pinjam'=>$request['tanggal_pinjam'],
+            'tanggal_kembali'=>$request['tanggal_kembali']
+        ])->save();
+        return redirect()->route('Transaksi.index');
     }
 
     /**

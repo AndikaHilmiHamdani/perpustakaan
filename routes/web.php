@@ -20,7 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/jmlbooks', [App\Http\Controllers\BooksController::class, 'books'])->name('books');
 Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::resource('admin', AdminController::class);

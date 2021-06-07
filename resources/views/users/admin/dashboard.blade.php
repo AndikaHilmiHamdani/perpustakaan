@@ -31,11 +31,7 @@
             <div class="sm-st clearfix">
                 <span class="sm-st-icon st-blue"><i class="fa fa-refresh fa-spin fa-1x"></i></span>
                 <div class="sm-st-info">
-                    <?php //$tampil = mysql_query("select * from trans_pinjam order by id desc");
-                    //$total2 = mysql_num_rows($tampil);
-                    ?>
-                    <span><?php //echo "$total2"; 
-                            ?></span>
+                    <span>$countTransaksi</span>
                     Total Peminjaman Buku
                 </div>
             </div>
