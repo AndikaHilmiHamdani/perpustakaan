@@ -31,7 +31,7 @@
             <div class="sm-st clearfix">
                 <span class="sm-st-icon st-blue"><i class="fa fa-refresh fa-spin fa-1x"></i></span>
                 <div class="sm-st-info">
-                    <span>$countTransaksi</span>
+                    <span>{{$countTransaksi}}</span>
                     Total Peminjaman Buku
                 </div>
             </div>

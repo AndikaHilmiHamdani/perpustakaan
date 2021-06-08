@@ -18,9 +18,10 @@ class TransaksiController extends Controller
     public function index()
     {
         $transaksi = Transaksi::with('users')->get();
-        $paginate = Transaksi::orderBy('trx_id','asc')->paginate(5);
+        $paginate = Transaksi::orderBy('trx_id', 'asc')->paginate(5);
+
         //dd($transaksi);
-        return view('users.transaksi.transaksi',compact('transaksi'),compact('paginate'));
+        return view('users.transaksi.transaksi', compact('transaksi'), compact('paginate'));
     }
 
     /**
@@ -30,9 +31,9 @@ class TransaksiController extends Controller
      */
     public function create($id)
     {
-        $transaksi = Transaksi::with('users')->where('user_id',$id)->first();
-        $books = Transaksi::with('books')->where('kode_buku',$id)->get();
-        return view('users.transaksi.inputTransaksi',compact('transaksi','books'));
+        $transaksi = Transaksi::with('users')->where('user_id', $id)->first();
+        $books = Transaksi::with('books')->where('kode_buku', $id)->get();
+        return view('users.transaksi.inputTransaksi', compact('transaksi', 'books'));
     }
 
     /**
@@ -44,18 +45,18 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'trx_id'=> 'required',
-            'kode_buku'=>'required',
-            'user_id'=>'required',
-            'tanggal_pinjam'=>'required',
-            'tanggal_kembali'=>'required'
+            'trx_id' => 'required',
+            'kode_buku' => 'required',
+            'user_id' => 'required',
+            'tanggal_pinjam' => 'required',
+            'tanggal_kembali' => 'required'
         ]);
-        $request= Transaksi::create([
-            'trx_id'=> $request['trx_id'],
-            'kode_buku'=>$request['kode_buku'],
-            'user_id'=>$request['user_id'],
-            'tanggal_pinjam'=>$request['tanggal_pinjam'],
-            'tanggal_kembali'=>$request['tanggal_kembali']
+        $request = Transaksi::create([
+            'trx_id' => $request['trx_id'],
+            'kode_buku' => $request['kode_buku'],
+            'user_id' => $request['user_id'],
+            'tanggal_pinjam' => $request['tanggal_pinjam'],
+            'tanggal_kembali' => $request['tanggal_kembali']
         ])->save();
         return redirect()->route('Transaksi.index');
     }

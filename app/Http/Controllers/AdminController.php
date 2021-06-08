@@ -33,6 +33,7 @@ class AdminController extends Controller
         ])
             ->orderBy('id', 'asc')
             ->paginate(5);
+
         return view("users.admin.user-index", compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -132,11 +133,9 @@ class AdminController extends Controller
         $users = User::get();
         $countUsers = count($users);
 
-        $countTransaksi ='';
-        $transaksi= Transaksi::select(Transaksi::raw("trx_id as trx_id"))->get();
+        $countTransaksi = '';
+        $transaksi = Transaksi::select(Transaksi::raw("trx_id as trx_id"))->get();
         $countTransaksi = count($transaksi);
-
-        //dd($countTransaksi);
-        return view("users.admin.dashboard", compact('countUsers'), compact('countBooks'), compact('countTransaksi'));
+        return view("users.admin.dashboard", compact('countUsers', 'countBooks', 'countTransaksi'));
     }
 }
