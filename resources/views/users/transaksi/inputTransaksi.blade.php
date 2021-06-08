@@ -25,18 +25,16 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Buku</label>
                             <div class="col-sm-8">
-                                <select class="form-control" >
-                                    @foreach ($transaksi as $transaksi)
-                                    <option value="{{ $transaksi->books->judul }}" id="kode_buku" name="kode_buku">{{ $transaksi->books->judul }}</option>
-                                    @endforeach
-                                </select>
+
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">User </label>
-                            <div class="col-sm-8">
-                                <input name="user_id" class="form-control" id="user_id" type="text" placeholder="User" required />
-                            </div>
+                            <select name="user_id" class="form-control" id="user_id">
+                                @foreach($user as $user)
+                                <option value="{{$user->id}}" {{$transaksi->users->id?'selected' : ''}}>{{$user->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
