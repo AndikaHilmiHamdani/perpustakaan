@@ -17,9 +17,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::with('users','status')->get();
+        $transaksi = Transaksi::with('users', 'status')->get();
         $paginate = Transaksi::orderBy('trx_id', 'asc')->paginate(5);
-
+        // dd($transaksi);
         return view('users.transaksi.transaksi', compact('transaksi'), compact('paginate'));
     }
 
@@ -32,7 +32,7 @@ class TransaksiController extends Controller
     {
         $user = User::all();
         $books = Books::all();
-        return view('users.transaksi.inputTransaksi', compact('user','books'));
+        return view('users.transaksi.inputTransaksi', compact('user', 'books'));
     }
 
     /**

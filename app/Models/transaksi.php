@@ -10,7 +10,7 @@ class Transaksi extends Model
     use HasFactory;
     protected $table = 'transaksi';
     public $timestamps = false;
-    protected $primaryKey='trx_id';
+    protected $primaryKey = 'trx_id';
     protected $fillable = [
         'trx_id',
         'kode_buku',
@@ -21,14 +21,14 @@ class Transaksi extends Model
     ];
     public function books()
     {
-        return $this->belongsTo(Books::class,'kode_buku','kode_buku');
+        return $this->belongsTo(Books::class, 'kode_buku', 'kode_buku');
     }
     public function users()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function status()
     {
-        return $this->belongsTo(status::class,'status_id','id');
+        return $this->belongsTo(status::class);
     }
 }

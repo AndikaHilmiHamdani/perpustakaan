@@ -60,7 +60,7 @@
                                 <td>{{$transaksi->users->name}}</td>
                                 <td>{{$transaksi->tanggal_pinjam}}</td>
                                 <td>{{$transaksi->tanggal_kembali}}</td>
-                                <td>{{$transaksi->status->id}}</td>
+                                <td>{{$transaksi->status->status}}</td>
                                 <td>
                                     <div id=" thanks">
                                         <form action="{{route('Transaksi.destroy',$transaksi->trx_id)}}" method="post">
