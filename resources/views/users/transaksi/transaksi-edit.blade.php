@@ -6,16 +6,20 @@
         <div class="col-xs-12">
             <div class="panel">
                 <header class="panel-heading">
-                    <b>Input Transaksi</b>
+                    <b>Edit Transaksi</b>
 
                 </header>
                 <!-- <div class="box-header"> -->
                 <!-- <h3 class="box-title">Responsive Hover Table</h3> -->
-
+                <?php
+                // $query = mysql_query("SELECT * FROM data_anggota WHERE id='$_GET[kd]'");
+                // $data  = mysql_fetch_array($query);
+                ?>
                 <!-- </div> -->
                 <div class="panel-body">
-                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('Transaksi.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                    <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('Transaksi.update',$transaksi->trx_id)}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Buku</label>
                             <div class="col-sm-8">
@@ -39,17 +43,25 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" required />
+                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" value="{{$transaksi->tanggal_pinjam}}" disabled />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Kembali </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" />
-                                <input name="status_id" id="status_id" type="hidden" value="1" />
+                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" value="{{$transaksi->tanggal_kembali}}" require />
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Status </label>
+                            <div class="col-sm-8">
+                                <select name="status_id" class="form-control" id="status_id">
+                                    @foreach($status as $status)
+                                    <option value="{{$status->id}}">{{$status->status}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label class="col-sm-2 col-sm-2 control-label"></label>
@@ -64,5 +76,6 @@
             </div><!-- /.box -->
         </div>
     </div>
-</section>
+    <!-- row end -->
+</section><!-- /.content -->
 @endsection

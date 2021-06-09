@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\status;
 use App\Models\User;
 use App\Models\Transaksi;
 
@@ -71,9 +72,13 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($trx_id)
     {
-        //
+        $user = User::all();
+        $books = Books::all();
+        $status = status::all();
+        $transaksi = Transaksi::find($trx_id);
+        return view('users.transaksi.transaksi-edit', compact('transaksi','books','user','status'));
     }
 
     /**
@@ -83,9 +88,17 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $trx_id)
     {
-        //
+        $request->validate([
+            'kode_buku' => 'required',
+            'user_id' => 'required',
+            'tanggal_pinjam' => 'required',
+            'tanggal_kembali' => 'required',
+            'status_id' => 'required'
+        ]);
+        Transaksi::find($trx_id)->update($request->all());
+        return view('users.transaksi.transaksi');
     }
 
     /**
