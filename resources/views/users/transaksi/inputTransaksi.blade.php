@@ -17,12 +17,6 @@
                     <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('Transaksi.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">ID</label>
-                            <div class="col-sm-8">
-                                <input name="trx_id" type="text" id="trx_id" class="form-control" placeholder="trx_id" required />
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Buku</label>
                             <div class="col-sm-8">
                                 <select name="kode_buku" class="form-control" id="kode_buku">
@@ -52,8 +46,11 @@
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Kembali </label>
                             <div class="col-sm-8">
                                 <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" />
+                                <input name="status_id" id="status_id" type="hidden" value="1" />
                             </div>
                         </div>
+
+
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label class="col-sm-2 col-sm-2 control-label"></label>
                             <div class="col-sm-8">

@@ -6,7 +6,7 @@
         <div class="col-xs-12">
             <div class="panel">
                 <header class="panel-heading">
-                    <b>Data Anggota</b>
+                    <b>Data Transaksi</b>
 
                 </header>
                 <!-- <div class="box-header"> -->
@@ -30,6 +30,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    <center>No </center>
+                                </th>
+                                <th>
                                     <center>Id </center>
                                 </th>
                                 <th>
@@ -52,9 +55,12 @@
                                 </th>
                             </tr>
                         </thead>
-                        @foreach($transaksi as $transaksi)
                         <tbody>
+                            <?php $nourut = 0; ?>
+                            @foreach($transaksi as $transaksi)
+                            <?php $nourut++; ?>
                             <tr>
+                                <td>{{$nourut}}</td>
                                 <td>{{$transaksi->trx_id}}</td>
                                 <td>{{$transaksi->books->judul}}</td>
                                 <td>{{$transaksi->users->name}}</td>

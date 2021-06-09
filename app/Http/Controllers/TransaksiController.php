@@ -44,21 +44,13 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'trx_id' => 'required',
             'kode_buku' => 'required',
             'user_id' => 'required',
             'tanggal_pinjam' => 'required',
             'tanggal_kembali' => 'required',
             'status_id' => 'required'
         ]);
-        $request = Transaksi::create([
-            'trx_id' => $request['trx_id'],
-            'kode_buku' => $request['kode_buku'],
-            'user_id' => $request['user_id'],
-            'tanggal_pinjam' => $request['tanggal_pinjam'],
-            'tanggal_kembali' => $request['tanggal_kembali'],
-            'status_id' => $request['status_id']
-        ])->save();
+        Transaksi::create($request->all());
         return redirect()->route('Transaksi.index');
     }
 
