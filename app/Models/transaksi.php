@@ -17,6 +17,7 @@ class Transaksi extends Model
         'user_id',
         'tanggal_pinjam',
         'tanggal_kembali',
+        'status_id',
     ];
     public function books()
     {
@@ -25,5 +26,9 @@ class Transaksi extends Model
     public function users()
     {
         return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function status()
+    {
+        return $this->belongsTo(status::class,'status_id','id');
     }
 }

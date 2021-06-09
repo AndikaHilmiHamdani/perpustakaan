@@ -17,10 +17,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksi = Transaksi::with('users')->get();
+        $transaksi = Transaksi::with('users','status')->get();
         $paginate = Transaksi::orderBy('trx_id', 'asc')->paginate(5);
 
-        //dd($transaksi);
         return view('users.transaksi.transaksi', compact('transaksi'), compact('paginate'));
     }
 
@@ -49,14 +48,16 @@ class TransaksiController extends Controller
             'kode_buku' => 'required',
             'user_id' => 'required',
             'tanggal_pinjam' => 'required',
-            'tanggal_kembali' => 'required'
+            'tanggal_kembali' => 'required',
+            'status_id' => 'required'
         ]);
         $request = Transaksi::create([
             'trx_id' => $request['trx_id'],
             'kode_buku' => $request['kode_buku'],
             'user_id' => $request['user_id'],
             'tanggal_pinjam' => $request['tanggal_pinjam'],
-            'tanggal_kembali' => $request['tanggal_kembali']
+            'tanggal_kembali' => $request['tanggal_kembali'],
+            'status_id' => $request['status_id']
         ])->save();
         return redirect()->route('Transaksi.index');
     }
@@ -101,8 +102,9 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($trx_id)
     {
-        //
+        Transaksi::find($trx_id)->delete();
+        return redirect()->route('Transaksi.index')->with('sukses', 'data berhasil dihapus');
     }
 }
