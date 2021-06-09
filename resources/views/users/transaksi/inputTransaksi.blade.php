@@ -25,16 +25,22 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Buku</label>
                             <div class="col-sm-8">
-
+                                <select name="kode_buku" class="form-control" id="kode_buku">
+                                    @foreach($books as $books)
+                                    <option value="{{$books->kode_buku}}">{{$books->judul}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">User </label>
-                            <select name="user_id" class="form-control" id="user_id">
-                                @foreach($user as $user)
-                                <option value="{{$user->id}}" {{$transaksi->users->id?'selected' : ''}}>{{$user->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="col-sm-8">
+                                <select name="user_id" class="form-control" id="user_id">
+                                    @foreach($user as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
@@ -45,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Kembali </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" required />
+                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" />
                             </div>
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">

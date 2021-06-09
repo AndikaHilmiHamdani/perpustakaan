@@ -29,11 +29,11 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $transaksi = Transaksi::with('users')->where('user_id', $id)->first();
-        $books = Transaksi::with('books')->where('kode_buku', $id)->get();
-        return view('users.transaksi.inputTransaksi', compact('transaksi', 'books'));
+        $user = User::all();
+        $books = Books::all();
+        return view('users.transaksi.inputTransaksi', compact('user','books'));
     }
 
     /**
