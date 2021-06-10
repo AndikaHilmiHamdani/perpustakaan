@@ -52,7 +52,7 @@ class TransaksiController extends Controller
             'status_id' => 'required'
         ]);
         Transaksi::create($request->all());
-        return redirect()->route('Transaksi.index');
+        return redirect()->route('anggota.index');
     }
 
     /**

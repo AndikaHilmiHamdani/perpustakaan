@@ -14,6 +14,16 @@
 
                 <!-- </div> -->
                 <div class="panel-body">
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('Transaksi.store')}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
                         <div class="form-group">
@@ -31,7 +41,7 @@
                             <div class="col-sm-8">
                                 <select name="user_id" class="form-control" id="user_id">
                                     @foreach($user as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    <option value="{{$user->id}}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -55,7 +65,7 @@
                             <label class="col-sm-2 col-sm-2 control-label"></label>
                             <div class="col-sm-8">
                                 <input type="submit" value="Simpan" class="btn btn-sm btn-primary" />&nbsp;
-                                <a href="{{route('Transaksi.index')}}" class="btn btn-sm btn-danger">Batal </a>
+                                <a href="{{route('anggota.index')}}" class="btn btn-sm btn-danger">Batal </a>
                             </div>
                         </div>
                         <div style="margin-top: 20px;"></div>

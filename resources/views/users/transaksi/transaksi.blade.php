@@ -50,9 +50,11 @@
                                 <th>
                                     <center>status </center>
                                 </th>
+                                @role('admin')
                                 <th>
                                     <center>Tools</center>
                                 </th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -69,12 +71,13 @@
                                 <td>{{$transaksi->status->status}}</td>
                                 <td>
                                     <div id=" thanks">
+                                        @role('admin')
                                         <form action="{{route('Transaksi.destroy',$transaksi->trx_id)}}" method="post">
                                             @csrf @method('DELETE')
                                             <button type="submit"><span class="glyphicon glyphicon-trash"></button>
                                             <a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Transaksi" href="{{route('Transaksi.edit',$transaksi->trx_id)}}"><span class="glyphicon glyphicon-edit"></span></a>
                                         </form>
-
+                                        @endrole
                                         </span>
                                         </a>
                                 </td>

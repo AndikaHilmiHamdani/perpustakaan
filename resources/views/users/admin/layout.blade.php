@@ -37,7 +37,7 @@
     <body class="skin-black">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
-            <a href="{{route('dashboard')}}" class="logo">
+            <a href="" class="logo">
                 Perpustakaan Online
             </a>
             <!-- Header Navbar: style can be found in header.less -->
@@ -104,12 +104,19 @@
                         </div>
                     </div>
                     <ul class="sidebar-menu">
+                        @role('kajur')
                         <li class="active">
                             <a href="{{route('dashboard')}}">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-
+                        @endrole
+                        @role('admin')
+                        <li class="active">
+                            <a href="{{route('dashboard')}}">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-user"></i>
@@ -133,6 +140,7 @@
                                 <li><a href="{{route('books.create')}}"><i class="fa fa-angle-double-right"></i> Tambah Buku</a></li>
                             </ul>
                         </li>
+                        @endrole
 
                         <li class="treeview">
                             <a href="#">
@@ -141,11 +149,24 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
+                                @role('admin')
+                                <li><a href="{{route('Transaksi.index')}}"><i class="fa fa-angle-double-right"></i> Data Transaksi</a></li>
+                                @endrole
+                                @role('kajur')
                                 <li><a href="{{route('Transaksi.index')}}"><i class="fa fa-angle-double-right"></i> Data Transaksi</a></li>
                                 <li><a href="{{route('Transaksi.create')}}"><i class="fa fa-angle-double-right"></i> Input Transaksi Pinjam</a></li>
+                               
                                 <li><a href="{{route('anggota.index')}}"><i class="fa fa-angle-double-right"></i> Transaksi Saya</a></li>
+                                
+                                @endrole
+                                @role('user')
+                                <li><a href="{{route('Transaksi.create')}}"><i class="fa fa-angle-double-right"></i> Input Transaksi Pinjam</a></li>
+                                <li><a href="{{route('anggota.index')}}"><i class="fa fa-angle-double-right"></i> Transaksi Saya</a></li>
+                                @endrole
+                                
                             </ul>
                         </li>
+                        @role('admin')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-lock"></i>
@@ -157,6 +178,8 @@
                                 <li><a href="input-admin.php"><i class="fa fa-angle-double-right"></i> Tambah Admin</a></li>
                             </ul>
                         </li>
+                        @endrole
+                        @role('admin')
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-file"></i>
@@ -170,6 +193,22 @@
                                 <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Laporan Pengembalian Buku</a></li>
                             </ul>
                         </li>
+                        @endrole
+                        @role('kajur')
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file"></i>
+                                <span>laporan</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Laporan Anggota</a></li>
+                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Laporan Buku</a></li>
+                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Laporan Peminjaman Buku</a></li>
+                                <li><a href="404.php"><i class="fa fa-angle-double-right"></i> Laporan Pengembalian Buku</a></li>
+                            </ul>
+                        </li>
+                        @endrole
                         <li>
                             <a href="tentang.php">
                                 <i class="fa fa-envelope"></i> <span>Tentang PerPusWeb</span>
