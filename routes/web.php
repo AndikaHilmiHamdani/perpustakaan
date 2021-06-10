@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\HomeController;
@@ -34,4 +35,7 @@ Route::middleware(['web'])->group(function () {
 });
 
 Route::resource('Transaksi', TransaksiController::class);
-Route::get('/anggota', [App\Http\Controllers\HomeController::class, 'anggota'])->name('anggota');
+
+Route::resource('anggota', AnggotaController::class);
+
+Route::get('/kembali/{id}', [App\Http\Controllers\AnggotaController::class, 'kembali'])->name('kembali');

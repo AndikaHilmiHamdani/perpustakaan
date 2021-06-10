@@ -143,7 +143,7 @@
                             <ul class="treeview-menu">
                                 <li><a href="{{route('Transaksi.index')}}"><i class="fa fa-angle-double-right"></i> Data Transaksi</a></li>
                                 <li><a href="{{route('Transaksi.create')}}"><i class="fa fa-angle-double-right"></i> Input Transaksi Pinjam</a></li>
-                                <li><a href="{{route('anggota')}}"><i class="fa fa-angle-double-right"></i> Transaksi Saya</a></li>
+                                <li><a href="{{route('anggota.index')}}"><i class="fa fa-angle-double-right"></i> Transaksi Saya</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

@@ -68,7 +68,7 @@
                                 <td>{{$transaksi->tanggal_kembali}}</td>
                                 <td>{{$transaksi->status->status}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success" href="{{route('Transaksi.edit',$transaksi->trx_id)}}>Kembalikan</button>
+                                    <a href="kembali/{{$transaksi->trx_id}}" class=" btn btn-success btn-lg active" role="button" aria-pressed="true">kembalikan</a>
                                 </td>
                             </tr>
                 </div>
@@ -81,9 +81,9 @@
             </table>
             <div class=" d-flex">
 
-                </div>
-            </div><!-- /.box-body -->
-        </div><!-- /.box -->
+            </div>
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
     </div>
     </div>
     <!-- row end -->
