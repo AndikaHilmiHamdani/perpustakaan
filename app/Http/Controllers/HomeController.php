@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Transaksi;
 use App\Models\Books;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,5 +34,13 @@ class HomeController extends Controller
     public function kajur()
     {
         return view('kajur');
+    }
+
+    public function anggota()
+    {
+        $id = Auth::User()->id;
+        $transaksi = Transaksi::with('users', 'status')->where('user_id', '=', $id)->get();
+        // dd($transaksi);
+        return view('transaksi-saya', compact('transaksi'));
     }
 }

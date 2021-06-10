@@ -78,7 +78,7 @@ class TransaksiController extends Controller
         $books = Books::all();
         $status = status::all();
         $transaksi = Transaksi::find($trx_id);
-        return view('users.transaksi.transaksi-edit',compact('user','books','status','transaksi'));
+        return view('users.transaksi.transaksi-edit', compact('user', 'books', 'status', 'transaksi'));
     }
 
     /**

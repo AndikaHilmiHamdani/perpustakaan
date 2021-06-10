@@ -34,33 +34,25 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Buku</label>
                             <div class="col-sm-8">
-                                <select name="kode_buku" class="form-control" id="kode_buku">
-                                    @foreach($books as $books)
-                                    <option value="{{$books->kode_buku}}">{{$books->judul}}</option>
-                                    @endforeach
-                                </select>
+                                <input name="kode_buku" class="form-control" id="kode_buku" type="input" value="{{$transaksi->books->judul}}" readonly />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">User </label>
                             <div class="col-sm-8">
-                                <select name="user_id" class="form-control" id="user_id">
-                                    @foreach($user as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input name="user_id" class="form-control" id="user_id" type="input" value="{{$transaksi->users->name}}" readonly />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" value="{{$transaksi->tanggal_pinjam}}" required />
+                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" value="{{$transaksi->tanggal_pinjam}}" readonly />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Kembali </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" value="{{$transaksi->tanggal_kembali}}" require />
+                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" value="{{$transaksi->tanggal_kembali}}" readonly />
                             </div>
                         </div>
                         <div class="form-group">

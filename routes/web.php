@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +34,4 @@ Route::middleware(['web'])->group(function () {
 });
 
 Route::resource('Transaksi', TransaksiController::class);
+Route::get('/anggota', [App\Http\Controllers\HomeController::class, 'anggota'])->name('anggota');
