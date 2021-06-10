@@ -17,6 +17,17 @@
                 ?>
                 <!-- </div> -->
                 <div class="panel-body">
+                    <!-- check eror -->
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form class="form-horizontal style-form" style="margin-top: 20px;" action="{{route('Transaksi.update',$transaksi->trx_id)}}" method="post" enctype="multipart/form-data" name="form1" id="form1">
                         @csrf
                         @method('PUT')
@@ -43,7 +54,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" value="{{$transaksi->tanggal_pinjam}}" disabled />
+                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" value="{{$transaksi->tanggal_pinjam}}" required />
                             </div>
                         </div>
                         <div class="form-group">

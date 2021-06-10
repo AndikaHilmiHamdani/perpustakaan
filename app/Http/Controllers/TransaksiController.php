@@ -78,7 +78,7 @@ class TransaksiController extends Controller
         $books = Books::all();
         $status = status::all();
         $transaksi = Transaksi::find($trx_id);
-        return view('users.transaksi.transaksi-edit', compact('transaksi','books','user','status'));
+        return view('users.transaksi.transaksi-edit',compact('user','books','status','transaksi'));
     }
 
     /**
@@ -98,7 +98,7 @@ class TransaksiController extends Controller
             'status_id' => 'required'
         ]);
         Transaksi::find($trx_id)->update($request->all());
-        return view('users.transaksi.transaksi');
+        return redirect()->route('Transaksi.index');
     }
 
     /**
