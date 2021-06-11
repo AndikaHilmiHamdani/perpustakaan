@@ -18,11 +18,11 @@
                         </div>
                         <div class="form-group row">
                             <p><input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"></p>
-                            <div class="col">
-                                <p class="submit"><input type="submit" name="commit" value="Login"></p>
-                                <a href="{{route('register')}}">Register</a>
-                            </div>
-
+                            @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                            @endif
                         </div>
 
                     </div>
