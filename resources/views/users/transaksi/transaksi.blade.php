@@ -33,7 +33,7 @@
                                     <center>No </center>
                                 </th>
                                 <th>
-                                    <center>Id </center>
+                                    <center>Id</center>
                                 </th>
                                 <th>
                                     <center>Buku </center>

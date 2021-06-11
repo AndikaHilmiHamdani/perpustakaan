@@ -39,23 +39,21 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">User </label>
                             <div class="col-sm-8">
-                                <select name="user_id" class="form-control" id="user_id">
-                                    @foreach($user as $user)
-                                    <option value="{{$user->id}}">{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input value="{{Auth::User()->name}}" name="user_name" class="form-control" id="user_name" type="input" readonly />
                             </div>
                         </div>
+                        <input value="{{Auth::User()->id}}" name="user_id" class="form-control" id="user_id" type="hidden" />
+
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Pinjam </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" required />
+                                <input value="{{$dateNow}}" name="tanggal_pinjam" class="form-control" id="tanggal_pinjam" type="date" readonly />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Tanggal Kembali </label>
                             <div class="col-sm-8">
-                                <input name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" />
+                                <input value="{{$fiveDays}}" name="tanggal_kembali" class="form-control" id="tanggal_kembali" type="date" readonly />
                                 <input name="status_id" id="status_id" type="hidden" value="1" />
                             </div>
                         </div>
@@ -65,7 +63,7 @@
                             <label class="col-sm-2 col-sm-2 control-label"></label>
                             <div class="col-sm-8">
                                 <input type="submit" value="Simpan" class="btn btn-sm btn-primary" />&nbsp;
-                                <a href="{{route('anggota.index')}}" class="btn btn-sm btn-danger">Batal </a>
+                                <a href="{{route('Transaksi.create')}}" class="btn btn-sm btn-danger">Batal </a>
                             </div>
                         </div>
                         <div style="margin-top: 20px;"></div>
@@ -74,5 +72,6 @@
             </div><!-- /.box -->
         </div>
     </div>
+
 </section>
 @endsection

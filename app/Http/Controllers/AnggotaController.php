@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Books;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\Transaksi;
@@ -22,6 +23,12 @@ class AnggotaController extends Controller
         $data = Transaksi::find($id);
         $data->status_id = 2;
         $data->save();
+
+        $buku = Books::find($data->kode_buku);
+        $stok = $buku->stock;
+        $sumStok = $stok + 1;
+        $buku->stock = $sumStok;
+        $buku->save();
 
         return redirect('/anggota');
     }

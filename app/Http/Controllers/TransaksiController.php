@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Books;
 use App\Models\status;
 use App\Models\User;
@@ -20,7 +21,7 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::with('users', 'status')->get();
         $paginate = Transaksi::orderBy('trx_id', 'asc')->paginate(5);
-        // dd($transaksi);
+
         return view('users.transaksi.transaksi', compact('transaksi'), compact('paginate'));
     }
 
@@ -33,7 +34,11 @@ class TransaksiController extends Controller
     {
         $user = User::all();
         $books = Books::all();
-        return view('users.transaksi.inputTransaksi', compact('user', 'books'));
+        $dateNow = date("Y-m-d");
+        $nextN = mktime(0, 0, 0, date("m"), date("d") + 4, date("Y"));
+        $fiveDays = date("Y-m-d", $nextN);
+        // dd($fiveDays);
+        return view('users.transaksi.inputTransaksi', compact('user', 'books', 'dateNow', 'fiveDays'));
     }
 
     /**
@@ -44,6 +49,13 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
+        $idbuku = $request->kode_buku;
+        $buku = Books::find($idbuku);
+        $stok = $buku->stock;
+        $sumStok = $stok - 1;
+        $buku->stock = $sumStok;
+        $buku->save();
+
         $request->validate([
             'kode_buku' => 'required',
             'user_id' => 'required',

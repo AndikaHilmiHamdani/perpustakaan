@@ -33,7 +33,7 @@
                                     <center>No </center>
                                 </th>
                                 <th>
-                                    <center>Id </center>
+                                    <center>Id_Transaksi </center>
                                 </th>
                                 <th>
                                     <center>Buku </center>
