@@ -18,6 +18,7 @@
                         </div>
                         <div class="form-group row">
                             <p><input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"></p>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                             @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
