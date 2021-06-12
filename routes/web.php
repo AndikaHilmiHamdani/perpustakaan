@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnggotaController;
@@ -27,6 +28,7 @@ Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::resource('admin', AdminController::class);
     Route::resource('books', BooksController::class);
+    Route::resource('add-admin',AddController::class);
 });
 Route::middleware(['web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

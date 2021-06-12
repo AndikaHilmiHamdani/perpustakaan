@@ -125,7 +125,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{route('admin.index')}}"><i class="fa fa-angle-double-right"></i> Data Anggota</a></li>
-                                <li><a href="{{route('admin.create')}}"><i class="fa fa-angle-double-right"></i> Tambah Anggota</a></li>
+                                <li><a href="{{route('register')}}"><i class="fa fa-angle-double-right"></i> Tambah Anggota</a></li>
                             </ul>
                         </li>
 
@@ -174,8 +174,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="admin.php"><i class="fa fa-angle-double-right"></i> Data Admin</a></li>
-                                <li><a href="input-admin.php"><i class="fa fa-angle-double-right"></i> Tambah Admin</a></li>
+                                <li><a href="{{route('add-admin.index')}}"><i class="fa fa-angle-double-right"></i> Data Admin</a></li>
                             </ul>
                         </li>
                         @endrole
