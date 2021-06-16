@@ -28,7 +28,7 @@ Auth::routes();
 Route::prefix('admin')->group(function () {
     Route::resource('admin', AdminController::class);
     Route::resource('books', BooksController::class);
-    Route::resource('add-admin',AddController::class);
+    Route::resource('add-admin', AddController::class);
 });
 Route::middleware(['web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,3 +41,8 @@ Route::resource('Transaksi', TransaksiController::class);
 Route::resource('anggota', AnggotaController::class);
 
 Route::get('/kembali/{id}', [App\Http\Controllers\AnggotaController::class, 'kembali'])->name('kembali');
+
+// search
+Route::get('/books/search', [BooksController::class, 'search']);
+Route::get('/admin/search', [AdminController::class, 'search']);
+Route::get('/transaksi/search', [TransaksiController::class, 'search']);

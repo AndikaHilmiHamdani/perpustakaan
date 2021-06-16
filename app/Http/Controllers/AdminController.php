@@ -37,6 +37,13 @@ class AdminController extends Controller
         return view("users.admin.user-index", compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        // $paginate = Mahasiswa::orderBy('Nim', 'asc')->paginate(3);
+        $users = User::where('id', 'like', '%' . $search . '%')->orWhere('name', 'like', '%' . $search . '%')->paginate(5);
+        return view('users.admin.user-index', compact('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *

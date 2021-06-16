@@ -15,15 +15,13 @@
                 <!-- </div> -->
                 <div class="panel-body table-responsive">
                     <div class="box-tools m-b-15">
-                        <form action="{{route('admin.index')}}" method="POST">
-                            <form action="{{route('admin.index')}}" method="GET" role="search">
-                                <div class="input-group">
-                                    <input id="term" type='text' class="form-control input-sm pull-right" style="width: 150px;" name='term' placeholder='Cari berdasarkan User ID dan Username' required />
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-default" type="submit"><i class="fa fa-search"></i></button>
-                                    </div>
+                        <form action="/transaksi/search" method="GET" role="search">
+                            <div class="input-group">
+                                <input id="term" type='text' value="{{ old('cari') }}" class="form-control input-sm pull-right" style="width: 150px;" name='search' placeholder='Cari berdasarkan User ID dan Username' required />
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-default" value="CARI" type="submit"><i class="fa fa-search"></i></button>
                                 </div>
-                            </form>
+                            </div>
                         </form>
                     </div>
                     <table id="example" class="table table-hover table-bordered">

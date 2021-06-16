@@ -24,6 +24,15 @@ class TransaksiController extends Controller
 
         return view('users.transaksi.transaksi', compact('transaksi'), compact('paginate'));
     }
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        // $users = User::where('name', '=', '$' . $search . '$');
+        // $paginate = Mahasiswa::orderBy('Nim', 'asc')->paginate(3);
+        $transaksi = Transaksi::with('users', 'status')->where('trx_id', 'like', '%' . $search . '%')->orWhere('user_id', 'like', '%' . $search . '%')->paginate(5);
+
+        return view('users.transaksi.transaksi', compact('transaksi'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +49,6 @@ class TransaksiController extends Controller
         // dd($fiveDays);
         return view('users.transaksi.inputTransaksi', compact('user', 'books', 'dateNow', 'fiveDays'));
     }
-
     /**
      * Store a newly created resource in storage.
      *

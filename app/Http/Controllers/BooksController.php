@@ -31,7 +31,13 @@ class BooksController extends Controller
             ->paginate(5);
         return view("users.books.books-index", compact('books'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        // $paginate = Mahasiswa::orderBy('Nim', 'asc')->paginate(3);
+        $books = Books::where('judul', 'like', '%' . $search . '%')->orWhere('kode_buku', 'like', '%' . $search . '%')->paginate(5);
+        return view('users.books.books-index', compact('books'));
+    }
     /**
      * Show the form for creating a new resource.
      *
