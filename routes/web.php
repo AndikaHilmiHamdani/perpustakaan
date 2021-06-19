@@ -46,3 +46,5 @@ Route::get('/kembali/{id}', [App\Http\Controllers\AnggotaController::class, 'kem
 Route::get('/books/search', [BooksController::class, 'search']);
 Route::get('/admin/search', [AdminController::class, 'search']);
 Route::get('/transaksi/search', [TransaksiController::class, 'search']);
+
+Route::get('/cetak-pdf',[TransaksiController::class,'cetak_pdf']);

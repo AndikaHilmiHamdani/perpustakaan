@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use PDF;
 use App\Models\Books;
 use App\Models\status;
 use App\Models\User;
@@ -131,5 +131,14 @@ class TransaksiController extends Controller
     {
         Transaksi::find($trx_id)->delete();
         return redirect()->route('Transaksi.index')->with('sukses', 'data berhasil dihapus');
+    }
+
+    public function cetak_pdf()
+    {
+        $transaksi = Transaksi::with('users', 'status')->get();
+        
+        // return view('cetak-pdf', compact('transaksi'));
+        $pdf = PDF::loadview('cetak-pdf',compact('transaksi'));
+        return $pdf->stream();
     }
 }
